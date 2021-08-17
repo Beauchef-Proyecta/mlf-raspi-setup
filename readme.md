@@ -1,5 +1,6 @@
-# Set your Raspberry Pi 4 up
+# Set your Raspberry Pi 4 up for My Little Factory
 
+This instructions will set your Raspberry Ready for My Little Factory, which uses popular resources, such as OpenCV and Flask.
 ## Flash an SD Card
 We recommend you to use the Raspberry Pi Imager tool and flash the Raspbian OS Lite viersion (no desktop) to any SD Card with more than 16 Gb.
 
@@ -19,13 +20,14 @@ Run the `raspi-config` tool as super user:
 sudo raspi-config
 ```
 
-Perform the following changes:
-- Update this tool
-- Change `hostname` to `<your-favorite-mlp-character>`. 
+Perform the following changes (you may want to check the boxes):
+- [ ] Update this tool
+- [ ] Expand the System
+- [ ] Change `hostname` to `<your-favorite-mlp-character>`. 
 **IMPORTANT**: In this example we will use `rainbowdash` as hostname
-- Change `pass` to anything secure AND that you can remember
-- Enable Camera
-- Change TimeZone
+- [ ] Change `pass` to anything secure AND that you can remember
+- [ ] Enable Camera
+- [ ] Change TimeZone
 
 Apply changes, reboot and log again through SSH.
 
@@ -83,8 +85,103 @@ The update part is fast; the upgrade part may take a while, so go grab some coff
 
 Then, install these bad boys:
 ```sh
-sudo apt install git
-sudp apt install python3-pip
-sudo apt install cmake
-````
+sudo apt install build-essential cmake pkg-config git python3-pip python3-dev
+```
 
+## Install OpenCV depencencies
+Support for image formats
+```sh
+sudo apt install -y libjpeg-dev libtiff5-dev libjasper-dev libpng-dev
+```
+If it fails, add the `--fix-missing` flag:
+```sh
+sudo apt install -y --fix-missing libjpeg-dev libtiff5-dev libjasper-dev libpng-dev
+```
+
+Support for most common video codecs
+```sh
+sudo apt install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
+```
+Support for windows and graphical interfaces. This can take several mnitues.
+```sh
+sudo apt install -y libfontconfig1-dev libcairo2-dev libgdk-pixbuf2.0-dev libpango1.0-dev libgtk2.0-dev libgtk-3-dev
+```
+Good ol' matrices optimization and Fortran <3
+```sh
+sudo apt install -y libatlas-base-dev gfortran
+```
+More support for graphical user interfaces (Qt and HDF5)
+```sh
+sudo apt install -y libhdf5-dev libhdf5-serial-dev libhdf5-103 libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
+```
+
+
+## Install Python3 virtual environments
+
+We will stay with Python 3.7 (the default 3.x version that comes with the OS). We now need one of the most important tools to mantain everything stable: virtual environments. This is accomplished by installing `virtualenv` and `virtualenvwrapper`:
+
+```sh
+sudo pip3 install virtualenv virtualenvwrapper
+```
+
+Now we need to append some environment variables to our `.bashrc` file
+```sh
+echo "# virtualenv and virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh  " >> ~/.bashrc
+```
+
+now we source them!
+```sh
+source ~/.bashrc
+```
+On first run, `virtualenvwrapper` will create some folders
+```sh
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/premkproject
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/postmkproject
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/initialize
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/premkvirtualenv
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/postmkvirtualenv
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/prermvirtualenv
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/postrmvirtualenv
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/predeactivate
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/postdeactivate
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/preactivate
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/postactivate
+virtualenvwrapper.user_scripts creating /home/student/.virtualenvs/get_env_details
+```
+Now we are ready to create our virtualenvironment:
+```sh
+mkvirtualenv mlf -p python3
+```
+I everything is ok, our terminal shoul have `(mld)` at the beginning of each line, which meand that the environment has been created and activated.
+
+## Install some Python packages in our environment
+
+Make sure the `mlf` environment is activated. If not, you can type:
+```sh
+workon mlf
+```
+`(mlf)` should append to the left of your terminal.
+
+Upgrade pip with the folloing command:
+```sh
+pip install --upgrade pip
+```
+Now install some dependencies with pip
+```sh
+pip install "picamera[array]"
+pip install flask
+pip install numpy
+pip install imutils
+pip install opencv-contrib-python
+```
+
+To check that everything worked, open a python3 interpreter and import the packages:
+```sh
+python
+>>> import cv2
+>>> import flask
+>>> import numpy
+>>> import picamera
