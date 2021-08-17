@@ -114,7 +114,10 @@ More support for graphical user interfaces (Qt and HDF5)
 ```sh
 sudo apt install -y libhdf5-dev libhdf5-serial-dev libhdf5-103 libqtgui4 libqtwebkit4 libqt4-test python3-pyqt5
 ```
-
+More stuff that I don't know does it do:
+```sh
+sudo apt install -y libilmbase-dev libopenexr-dev libgstreamer1.0-dev
+```
 
 ## Install Python3 virtual environments
 
