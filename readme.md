@@ -85,7 +85,7 @@ The update part is fast; the upgrade part may take a while, so go grab some coff
 
 Then, install these bad boys:
 ```sh
-sudo apt install build-essential cmake pkg-config git python3-pip python3-dev
+sudo apt install build-essential cmake pkg-config git python3-pip python3-dev screen
 ```
 
 ## Install OpenCV depencencies
@@ -188,3 +188,12 @@ python
 >>> import flask
 >>> import numpy
 >>> import picamera
+```
+
+## Install remote.it daemon
+```sh
+curl -LkO https://raw.githubusercontent.com/remoteit/installer/master/scripts/auto-install.sh
+chmod +x ./auto-install.sh
+sudo ./auto-install.sh
+````
+
