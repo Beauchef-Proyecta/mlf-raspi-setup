@@ -1,0 +1,11 @@
+authtoken: <your_authtoken>
+region: sa
+tunnels:
+  ssh:
+    proto: tcp
+    addr: 22
+  camera:
+    proto: http
+    addr: 5000
+
+    
