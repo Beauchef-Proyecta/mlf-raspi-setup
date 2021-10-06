@@ -4,8 +4,9 @@ This instructions will set your Raspberry Ready for My Little Factory, which use
 ## Flash an SD Card
 We recommend you to use the Raspberry Pi Imager tool and flash the Raspbian OS Lite viersion (no desktop) to any SD Card with more than 16 Gb.
 
-After flashing, mount the SD Card on your computer, open the `boot` volume and add an empty file named `ssh`. This will enable the SSH conections on the Raspberry Pi.
+**IMPORTANT:** After flashing, mount the SD Card on your computer, open the `boot` volume and add an empty file named `ssh`. This will enable the SSH conections on the Raspberry Pi.
 
+## Connect to your Pi via SSH
 Load the card in the Raspberry Pi, connect it to a LAN (we recomend using an ethernet cable) and turn it on. Log into the Raspberry Pi through SSH:
 
 In your own terminal type:
