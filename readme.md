@@ -33,6 +33,17 @@ Perform the following changes (you may want to check the boxes):
 Apply changes, reboot and log again through SSH.
 
 ## Install some important software
+
+### Fast Version
+
+```sh
+curl https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/setup.sh -o setup.sh
+chmod +x setup.sh
+sudo sh setup.sh
+```
+### Step-by-Step Version
+
+
 First of all, update and upgrade `apt`, our package manager:
 ```sh
 sudo apt update
