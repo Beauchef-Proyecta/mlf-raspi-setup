@@ -4,8 +4,9 @@ This instructions will set your Raspberry Ready for My Little Factory, which use
 ## Flash an SD Card
 We recommend you to use the Raspberry Pi Imager tool and flash the Raspbian OS Lite viersion (no desktop) to any SD Card with more than 16 Gb.
 
-After flashing, mount the SD Card on your computer, open the `boot` volume and add an empty file named `ssh`. This will enable the SSH conections on the Raspberry Pi.
+**IMPORTANT:** After flashing, mount the SD Card on your computer, open the `boot` volume and add an empty file named `ssh`. This will enable the SSH conections on the Raspberry Pi.
 
+## Connect to your Pi via SSH
 Load the card in the Raspberry Pi, connect it to a LAN (we recomend using an ethernet cable) and turn it on. Log into the Raspberry Pi through SSH:
 
 In your own terminal type:
@@ -152,4 +153,17 @@ curl -LkO https://raw.githubusercontent.com/remoteit/installer/master/scripts/au
 chmod +x ./auto-install.sh
 sudo ./auto-install.sh
 ````
+
+## Install ngrok agent
+
+First get `<your-authtoken>` from [ngrok website](https://dashboard.ngrok.com/get-started/your-authtoken). Use this to authenticate the ngrok agent that you'll download.
+
+In your raspi terminal, write this to create tunnels automatically every time the Raspberry Pi is restarted!:
+
+```sh
+curl -O https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/install.sh
+chmod +x install.sh
+sudo ./install.sh <your-authtoken>
+```
+
 
