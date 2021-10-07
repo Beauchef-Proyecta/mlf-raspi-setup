@@ -31,50 +31,6 @@ Perform the following changes (you may want to check the boxes):
 
 Apply changes, reboot and log again through SSH.
 
-## Rename User
-
-First, we need to enable root user, because no changes to the user name can be made while using the user. Enter the following command 
-```sh
-sudo passwd root
-```
-This will ask you to add a passwd to the root user. Please use something safe.
-
-Enable root login through SSH by modifiyng the following line in the `/etc/ssh/sshd_config` file:
-
-```sh
-    PermitRootLogin Yes
-```
-The line is going to be commented when you first open it. You only need to uncomment the line and change `prohibitPassword`to `Yes`. To edit the file you can run:
-
-```sh
-sudo nano /etc/ssh/sshd_config
-```
-Reboot your raspi and log through SSH using the root user:
-```sh
-ssh root@rainbowdash.local
-```
-
-Rename `pi`user to `student` and create its new home folder:
-```sh
-usermod -l student pi
-usermod -m -d /home/student student
-```
-
-Reboot and login to the new user through SSG:
-```sh
-ssh student@rainbowdash.local
-```
-
-Disable root user with the following command:
-```sh
-sudo passwd -l root
-```
-
-*Advice*: For now on, every time you need to use root user, we recommend to use
-```sh
-sudo -i
-```
-
 ## Install some important software
 First of all, update and upgrade `apt`, our package manager:
 ```sh
@@ -132,7 +88,7 @@ Now we need to append some environment variables to our `.bashrc` file
 echo "# virtualenv and virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh  " >> ~/.bashrc
+source /usr/local/bin/virtualenvwrapper.sh " >> ~/.bashrc
 ```
 
 now we source them!
@@ -158,7 +114,7 @@ Now we are ready to create our virtualenvironment:
 ```sh
 mkvirtualenv mlf -p python3
 ```
-I everything is ok, our terminal shoul have `(mld)` at the beginning of each line, which meand that the environment has been created and activated.
+I everything is ok, our terminal shoul have `(mlf)` at the beginning of each line, which meand that the environment has been created and activated.
 
 ## Install some Python packages in our environment
 
