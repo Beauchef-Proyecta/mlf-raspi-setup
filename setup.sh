@@ -15,8 +15,8 @@ apt install -y --fix-missing libhdf5-dev libhdf5-serial-dev libhdf5-103 libqtgui
 apt install -y --fix-missing libilmbase-dev libopenexr-dev libgstreamer1.0-dev | tee -a install_logs
 
 echo "Installing virtualenv and virtualenvwrapper for Python3" | tee -a install_logs
-pip3 install --upgrade pip
-pip3 install virtualenv virtualenvwrapper | tee -a install_logs
+sudo -u pi pip3 install --upgrade pip
+sudo -u pi pip3 install virtualenv virtualenvwrapper | tee -a install_logs
 
 
 sudo -u pi cat >> /home/pi/.bashrc << EOL
