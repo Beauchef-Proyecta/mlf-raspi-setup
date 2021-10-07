@@ -25,3 +25,6 @@ export WORKON_HOME=/home/pi/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 EOL
+
+export WORKON_HOME=/home/pi/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3

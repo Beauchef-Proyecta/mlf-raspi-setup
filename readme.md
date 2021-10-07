@@ -41,6 +41,25 @@ curl https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/se
 chmod +x setup.sh
 sudo sh setup.sh
 ```
+
+Then run the following
+```
+export WORKON_HOME=/home/pi/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
+```
+
+And then:
+```sh
+mkvirtualenv mlf
+```
+
+Make sure the virtual environment `mlf` is activated (`workon)
+```sh
+curl https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/requirements.txt -o requirements.txt
+pip install -r requirements
+```
+
 ### Step-by-Step Version
 
 
