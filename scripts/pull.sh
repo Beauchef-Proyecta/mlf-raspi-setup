@@ -1,4 +1,7 @@
 #!/bin/bash
-git -C $1 reset --hard origin/main
+echo "Checkout..."
 git -C $1 checkout .
-git -C $1 pull
+echo "Fetch..."
+git -C $1 fetch
+echo "Reset..."
+git -C $1 reset --hard origin/main
