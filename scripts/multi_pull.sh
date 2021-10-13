@@ -1,4 +1,6 @@
 #!/bin/bash
+
+echo "Daily Pull @ $(date)"
 cd /home/pi/mlf
 
 find . -mindepth 1 -maxdepth 1 -type d -print -exec setup/scripts/pull.sh {} \;
