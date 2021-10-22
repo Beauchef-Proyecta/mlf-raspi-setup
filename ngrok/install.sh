@@ -27,13 +27,12 @@ fi
 
 if [ ! -e ngrok.service ]; then
     git clone --depth=1 https://github.com/Beauchef-Proyecta/mlf-raspi-setup.git
-    cd mlf-raspi-setup
+    cd mlf-raspi-setup/ngrok
 fi
 cp ngrok.service /lib/systemd/system/
 mkdir -p /opt/ngrok
 cp ngrok.yml /opt/ngrok
-sed -i "s/<add_your_token_here>/$1/g" /opt/ngrok/ngrok.yml
-rm mlf-raspi-setup
+sed -i "s/<your_authtoken>/$1/g" /opt/ngrok/ngrok.yml
 
 cd /opt/ngrok
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip

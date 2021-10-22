@@ -186,14 +186,14 @@ sudo ./auto-install.sh
 
 ## Install ngrok agent
 
-First get `<your-authtoken>` from [ngrok website](https://dashboard.ngrok.com/get-started/your-authtoken). Use this to authenticate the ngrok agent that you'll download.
+First get `<your_authtoken>` from [ngrok website](https://dashboard.ngrok.com/get-started/your-authtoken). Use this to authenticate the ngrok agent that you'll download.
 
 In your raspi terminal, write this to create tunnels automatically every time the Raspberry Pi is restarted!:
 
 ```sh
-curl -O https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/install.sh
+curl -O https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/ngrok/install.sh
 chmod +x install.sh
-sudo ./install.sh <your-authtoken>
+sudo ./install.sh <your_authtoken>
 ```
 
 
