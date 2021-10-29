@@ -35,10 +35,15 @@ cp ngrok.yml /opt/ngrok
 sed -i "s/<your_authtoken>/$1/g" /opt/ngrok/ngrok.yml
 
 cd /opt/ngrok
-wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-unzip ngrok-stable-linux-amd64.zip
-rm ngrok-stable-linux-amd64.zip
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
+unzip ngrok-stable-linux-arm.zip
+rm ngrok-stable-linux-arm.zip
 chmod +x ngrok
+
+echo "Please run as root this command"
+
+echo "systemctl enable ngrok.service"
+echo "systemctl start ngrok.service"
 
 systemctl enable ngrok.service
 systemctl start ngrok.service
