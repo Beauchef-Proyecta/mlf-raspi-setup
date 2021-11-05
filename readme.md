@@ -62,7 +62,7 @@ mkvirtualenv mlf -p python3.7
 Make sure the virtual environment `mlf` is activated (`workon`)
 ```sh
 curl https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/requirements.txt -o requirements.txt
-pip install -r requirements
+pip install -r requirements.txt
 ```
 
 ### Step-by-Step Version
