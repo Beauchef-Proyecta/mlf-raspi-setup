@@ -42,6 +42,11 @@ chmod +x setup.sh
 sudo sh setup.sh
 ```
 
+Install virtualenv & virtualenvwrapper
+```sh
+sudo pip3 install virtualenv virtualenvwrapper
+```
+
 Then run the following
 ```
 export WORKON_HOME=/home/pi/.virtualenvs
@@ -51,10 +56,10 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 And then:
 ```sh
-mkvirtualenv mlf
+mkvirtualenv mlf -p python3.7
 ```
 
-Make sure the virtual environment `mlf` is activated (`workon)
+Make sure the virtual environment `mlf` is activated (`workon`)
 ```sh
 curl https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/requirements.txt -o requirements.txt
 pip install -r requirements
