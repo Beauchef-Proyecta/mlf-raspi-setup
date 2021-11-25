@@ -32,17 +32,21 @@ Perform the following changes (you may want to check the boxes):
 
 Apply changes, reboot and log again through SSH.
 
-## Install some important software
+## Install Libraries [*Fast*]
 
-### Fast Version
+Clone this repo and execute `setup.sh`in the main folder
 
 ```sh
-curl https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/setup.sh -o setup.sh
+mkdir mlf
+cd mlf
+git clone https://github.com/Beauchef-Proyecta/mlf-raspi-setup.git setup
+
+cd setup
 chmod +x setup.sh
 sudo sh setup.sh
 ```
 
-Then run the following
+Run the following lines
 ```
 export WORKON_HOME=/home/pi/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
@@ -53,15 +57,44 @@ And then:
 ```sh
 mkvirtualenv mlf
 ```
-
-Make sure the virtual environment `mlf` is activated (`workon)
+Make sure the virtual environment `mlf` is activated (`workon`). Then, upgrade pip and install the packages specified in `requirements.txt`
 ```sh
-curl https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/requirements.txt -o requirements.txt
-pip install -r requirements
+pip install --upgrade pip
+pip install -r requirements.txt
 ```
 
-### Step-by-Step Version
+## Enable remote access with ngrok & remot3.it
 
+### Install ngrok agent
+
+First get `<your-authtoken>` from [ngrok website](https://dashboard.ngrok.com/get-started/your-authtoken). Use this to authenticate the ngrok agent that you\'ll download.
+
+In your raspi terminal, write this to create tunnels automatically every time the Raspberry Pi is restarted!:
+
+```sh
+curl -O https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/install.sh
+chmod +x install.sh
+sudo ./install.sh <your-authtoken>
+```
+Reboot to finish agent installation.
+### Install remote.it daemon
+```sh
+curl -LkO https://raw.githubusercontent.com/remoteit/installer/master/scripts/auto-install.sh
+chmod +x ./auto-install.sh
+sudo ./auto-install.sh
+```
+Reboot the raspberry and log into the remot3.it wizard with the following command and follow the instructions to add services:
+```sh
+sudo connectd-installer
+```
+Remember that `ssh` service must use the default `22` port and the server must use the `5000` port.
+
+## That's it!
+Now yout raspberry should be ready to run the Little Factory software. Here can find the  [source code](https://github.com/Beauchef-Proyecta/mlf) :)
+# Install libraries and envs [*Step-by-Step*]
+
+> **IMPORTANT** 
+This *step-by-step* instructions describe the exact same installation shown in previous sections.
 
 First of all, update and upgrade `apt`, our package manager:
 ```sh
@@ -75,7 +108,7 @@ Then, install these bad boys:
 sudo apt install build-essential cmake pkg-config git python3-pip python3-dev screen
 ```
 
-## Install OpenCV depencencies
+### Install OpenCV depencencies
 Support for image formats
 ```sh
 sudo apt install -y libjpeg-dev libtiff5-dev libjasper-dev libpng-dev
@@ -106,7 +139,7 @@ More stuff that I don't know does it do:
 sudo apt install -y libilmbase-dev libopenexr-dev libgstreamer1.0-dev
 ```
 
-## Install Python3 virtual environments
+### Install Python3 virtual environments
 
 We will stay with Python 3.7 (the default 3.x version that comes with the OS). We now need one of the most important tools to mantain everything stable: virtual environments. This is accomplished by installing `virtualenv` and `virtualenvwrapper`:
 
@@ -147,7 +180,7 @@ mkvirtualenv mlf -p python3
 ```
 I everything is ok, our terminal shoul have `(mlf)` at the beginning of each line, which meand that the environment has been created and activated.
 
-## Install some Python packages in our environment
+### Install some Python packages in our environment
 
 Make sure the `mlf` environment is activated. If not, you can type:
 ```sh
@@ -161,11 +194,7 @@ pip install --upgrade pip
 ```
 Now install some dependencies with pip
 ```sh
-pip install "picamera[array]"
-pip install flask
-pip install numpy
-pip install imutils
-pip install opencv-contrib-python
+pip install -r requirements.txt
 ```
 
 To check that everything worked, open a python3 interpreter and import the packages:
@@ -177,23 +206,5 @@ python
 >>> import picamera
 ```
 
-## Install remote.it daemon
-```sh
-curl -LkO https://raw.githubusercontent.com/remoteit/installer/master/scripts/auto-install.sh
-chmod +x ./auto-install.sh
-sudo ./auto-install.sh
-````
-
-## Install ngrok agent
-
-First get `<your-authtoken>` from [ngrok website](https://dashboard.ngrok.com/get-started/your-authtoken). Use this to authenticate the ngrok agent that you'll download.
-
-In your raspi terminal, write this to create tunnels automatically every time the Raspberry Pi is restarted!:
-
-```sh
-curl -O https://raw.githubusercontent.com/Beauchef-Proyecta/mlf-raspi-setup/main/install.sh
-chmod +x install.sh
-sudo ./install.sh <your-authtoken>
-```
 
 
