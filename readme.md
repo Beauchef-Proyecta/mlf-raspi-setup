@@ -55,7 +55,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 And then:
 ```sh
-mkvirtualenv mlf
+mkvirtualenv mlf -p python3.7
 ```
 Make sure the virtual environment `mlf` is activated (`workon`). Then, upgrade pip and install the packages specified in `requirements.txt`
 ```sh
